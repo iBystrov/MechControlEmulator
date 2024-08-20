@@ -6,6 +6,8 @@
 //#include <QtCore/QLocale>
 #include <locale>
 #include <QDebug>
+#include <QRegularExpression>
+
 
 #include "ControlSystem.h"
 
@@ -16,12 +18,13 @@ class ComandHandler :
     QTextStream *qout;       // Консольный вывод
     QTextStream *qin;        // Консольный ввод
 
-    ControlSystem cs;
+    ControlSystem cs;        // система управления механизмом
+
 public:
     ComandHandler();
     ~ComandHandler();
 
-    void run();
+    void run();              // Цикл обработки команд
 
 };
 
