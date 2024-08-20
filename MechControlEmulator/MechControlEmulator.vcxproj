@@ -100,7 +100,7 @@
     <ClCompile Include="Mechanism.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ComandHandler.h" />
+    <QtMoc Include="ComandHandler.h" />
     <ClInclude Include="ControlSystem.h" />
     <ClInclude Include="Mechanism.h" />
   </ItemGroup>

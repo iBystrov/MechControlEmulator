@@ -43,8 +43,10 @@
     <ClInclude Include="ControlSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComandHandler.h">
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ComandHandler.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
   </ItemGroup>
 </Project>
