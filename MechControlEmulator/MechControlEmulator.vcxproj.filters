@@ -32,12 +32,18 @@
     <ClCompile Include="ControlSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ComandHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mechanism.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ControlSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComandHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
