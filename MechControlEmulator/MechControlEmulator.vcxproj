@@ -98,8 +98,10 @@
     <ClCompile Include="ControlSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mechanism.cpp" />
+    <ClCompile Include="CsvWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="CsvWriter.h" />
     <QtMoc Include="ComandHandler.h" />
     <ClInclude Include="ControlSystem.h" />
     <ClInclude Include="Mechanism.h" />

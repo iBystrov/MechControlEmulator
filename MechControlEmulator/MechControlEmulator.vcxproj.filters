@@ -35,6 +35,9 @@
     <ClCompile Include="ComandHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CsvWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mechanism.h">
@@ -46,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ComandHandler.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CsvWriter.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

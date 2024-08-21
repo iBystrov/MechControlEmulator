@@ -74,12 +74,10 @@ quint64 ControlSystem::moveY(const qint64& y)
 	return dist;
 }
 
-QPair<qint64, qint64> ControlSystem::getPosition() const
+QString ControlSystem::getPosition() const
 {
-	QPair<qint64, qint64> pos{};
-	pos.first = mech.x;
-	pos.second = mech.y;
-	return pos;
+	QString str = QString::number(mech.x) + "," + QString::number(mech.y);
+	return str;
 }
 
 ControlSystem::~ControlSystem()
