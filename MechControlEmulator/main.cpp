@@ -14,9 +14,8 @@ int main(int argc, char *argv[])
     QObject::connect(&ch, SIGNAL(finished()),   // Сигнал завершения потока ввода команд 
                       &a, SLOT(quit()));        // завершит работу программы
 
-    QObject::connect(&ch, SIGNAL(logTracking(QString)),   // Сигнал завершения потока ввода команд 
-        &cw, SLOT(logTrackingSlot(QString)));        // завершит работу программы
-
+    QObject::connect(&ch, SIGNAL(logTracking(QString)),   // Сигнал записи в CSV-файл 
+        &cw, SLOT(logTrackingSlot(QString)));             // текущей позиции механизма
 
     ch.start();                                 // Старт потока ввода команд (запускает ComandHandler::run())
 
