@@ -1,12 +1,12 @@
-#pragma once
+п»ї#pragma once
 #include "Mechanism.h"
 
-// Система управления механизмом
+// РЎРёСЃС‚РµРјР° СѓРїСЂР°РІР»РµРЅРёСЏ РјРµС…Р°РЅРёР·РјРѕРј
 class ControlSystem
 {
 	Mechanism mech;
 
-	// Пределы перемещения по осям 
+	// РџСЂРµРґРµР»С‹ РїРµСЂРµРјРµС‰РµРЅРёСЏ РїРѕ РѕСЃСЏРј 
 	static const qint64 maxX = 20000;
 	static const qint64 maxY = 20000;
 	static const qint64 minX = -20000;
@@ -14,8 +14,8 @@ class ControlSystem
 public:
 	ControlSystem();
 	~ControlSystem();
-	quint64 moveX(const qint64 &x);				// Перемещает на x шагов. Возвращает последнее перемещение по X
-	quint64 moveY(const qint64 &y);				// Перемещает на y шагов. Возвращает последнее перемещение по Y
-	QPair<qint64, qint64> getPosition() const;  // Возвращает текущее положение по осям X и Y
+	quint64 moveX(const qint64 &x);				// РџРµСЂРµРјРµС‰Р°РµС‚ РЅР° x С€Р°РіРѕРІ. Р’РѕР·РІСЂР°С‰Р°РµС‚ РїРѕСЃР»РµРґРЅРµРµ РїРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ X
+	quint64 moveY(const qint64 &y);				// РџРµСЂРµРјРµС‰Р°РµС‚ РЅР° y С€Р°РіРѕРІ. Р’РѕР·РІСЂР°С‰Р°РµС‚ РїРѕСЃР»РµРґРЅРµРµ РїРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ Y
+	QPair<qint64, qint64> getPosition() const;  // Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РµРµ РїРѕР»РѕР¶РµРЅРёРµ РїРѕ РѕСЃСЏРј X Рё Y
 };
 
