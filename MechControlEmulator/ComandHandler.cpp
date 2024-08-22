@@ -29,18 +29,7 @@ void ComandHandler::run()
                 printWrongComand();                     // то ввод был некорректен   
                 continue;                               // дальше не идём, продолжаем со следующей итерации
             }
-//            *qout << "Положение до перемещения(X, Y): " << Qt::flush;
-//            printPosition();
-//            *qout << "Перемещено на " 
-//                  << cs.moveX(x)                        // Перемещение по X
-//                  << " шагов по Х и 0 шагов по Y" << Qt::endl;
-//            *qout << "Положение после перемещения(X, Y): " << Qt::flush;
-//            emit logTracking(cs.getPosition());
-//            printPosition();               
-// 
             emit moveX(x);
-            //emit getPosition();
-            //wait(100);
         }
         else if (comand.startsWith("move y "))
         {
@@ -51,22 +40,11 @@ void ComandHandler::run()
                 printWrongComand();                    
                 continue;                               
             }
-//            *qout << "Положение до перемещения(X, Y): " << Qt::flush;
-//            printPosition();
-//            *qout << "Перемещено на 0 шагов по X и " 
-//                  << cs.moveY(y)                        // Перемещение по Y
-//                  << " шагов по Y" << Qt::endl;
-//            *qout << "Положение после перемещения(X, Y): " << Qt::flush;
-//            emit logTracking(cs.getPosition());
-//            printPosition();
-
             emit moveY(y);
-
         }
         else if (!(comand.compare("get position")))
         {
             emit getPosition();
- //           printPosition();
         }
         else if (!(comand.compare("exit")))
         {
@@ -77,14 +55,11 @@ void ComandHandler::run()
         }
         //*qout << ">: ";// << Qt::flush;
     }
-
-    //this->quit();
     this->exit(0); 
 }
 
 void ComandHandler::printPosition(QString s)
 {
-    //*qout << cs.getPosition() << Qt::endl;
     *qout << "Текущее положение: " << s << Qt::endl;
 }
 

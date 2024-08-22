@@ -4,6 +4,7 @@ ControlSystem::ControlSystem()
 {
 	mech.x = 0;
 	mech.y = 0;
+	pos = "0,0";
 }
 
 void ControlSystem::moveX(qint64 x)
@@ -37,9 +38,10 @@ void ControlSystem::moveX(qint64 x)
 	else					// иначе стоим на месте
 		dist = 0;
 
-	//return dist;	
 	emit printLastMoveX(dist);
-	getPosition();
+	updatePos();
+	emit logTracking(pos);
+	emit printPosition(pos);
 }
 
 void ControlSystem::moveY(qint64 y)
@@ -73,15 +75,20 @@ void ControlSystem::moveY(qint64 y)
 	else					
 		dist = 0;
 
-	//return dist;
 	emit printLastMoveY(dist);
-	getPosition();
+	updatePos();
+	emit logTracking(pos);
+	emit printPosition(pos);
 }
 
-void ControlSystem::getPosition() 
+void ControlSystem::updatePos()
 {
-	QString str = QString::number(mech.x) + "," + QString::number(mech.y);
-	emit printPosition(str); 
+	pos = QString::number(mech.x) + "," + QString::number(mech.y);
+}
+
+void ControlSystem::getPosition()
+{	
+	emit printPosition(pos); 
 }
 
 ControlSystem::~ControlSystem()
