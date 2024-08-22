@@ -1,10 +1,12 @@
 ﻿#pragma once
 #include "Mechanism.h"
 #include <QString>
+#include <QObject>
 
 // Система управления механизмом
-class ControlSystem
+class ControlSystem : public QObject
 {
+	Q_OBJECT
 	Mechanism mech;
 
 	// Пределы перемещения по осям 
@@ -15,8 +17,22 @@ class ControlSystem
 public:
 	ControlSystem();
 	~ControlSystem();
-	quint64 moveX(const qint64 &x);				// Перемещает на x шагов. Возвращает последнее перемещение по X
-	quint64 moveY(const qint64 &y);				// Перемещает на y шагов. Возвращает последнее перемещение по Y
-	QString getPosition() const;  // Возвращает текущее положение по осям X и Y
+//	quint64 moveX(const qint64 &x);				// Перемещает на x шагов. Возвращает последнее перемещение по X
+//	quint64 moveY(const qint64 &y);				// Перемещает на y шагов. Возвращает последнее перемещение по Y
+//	QString getPosition() const;  // Возвращает текущее положение по осям X и Y
+
+signals:
+
+	void printPosition(QString);       // Вывод текущей позиции
+	void printLastMoveX(quint64);
+	void printLastMoveY(quint64);
+
+
+public slots:
+	void moveX(qint64 x);
+	void moveY(qint64 y);
+	void getPosition();
+
+
 };
 

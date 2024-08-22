@@ -103,7 +103,7 @@
   <ItemGroup>
     <QtMoc Include="CsvWriter.h" />
     <QtMoc Include="ComandHandler.h" />
-    <ClInclude Include="ControlSystem.h" />
+    <QtMoc Include="ControlSystem.h" />
     <ClInclude Include="Mechanism.h" />
   </ItemGroup>
   <ItemGroup>

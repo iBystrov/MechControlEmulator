@@ -43,15 +43,15 @@
     <ClInclude Include="Mechanism.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ControlSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ComandHandler.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="CsvWriter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ControlSystem.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

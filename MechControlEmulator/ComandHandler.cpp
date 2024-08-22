@@ -26,17 +26,21 @@ void ComandHandler::run()
             bool ok;
             qint64 x = trunc(comand.toDouble(&ok));     // Преобразуем в double и отбрасываем дробь
             if (!ok) {                                  // Если преобразование не удалось
-                printWrongCommand();                    // то ввод был некорректен   
+                printWrongComand();                     // то ввод был некорректен   
                 continue;                               // дальше не идём, продолжаем со следующей итерации
             }
-            *qout << "Положение до перемещения(X, Y): " << Qt::flush;
-            printPosition();
-            *qout << "Перемещено на " 
-                  << cs.moveX(x)                        // Перемещение по X
-                  << " шагов по Х и 0 шагов по Y" << Qt::endl;
-            *qout << "Положение после перемещения(X, Y): " << Qt::flush;
-            emit logTracking(cs.getPosition());
-            printPosition();                
+//            *qout << "Положение до перемещения(X, Y): " << Qt::flush;
+//            printPosition();
+//            *qout << "Перемещено на " 
+//                  << cs.moveX(x)                        // Перемещение по X
+//                  << " шагов по Х и 0 шагов по Y" << Qt::endl;
+//            *qout << "Положение после перемещения(X, Y): " << Qt::flush;
+//            emit logTracking(cs.getPosition());
+//            printPosition();               
+// 
+            emit moveX(x);
+            //emit getPosition();
+            //wait(100);
         }
         else if (comand.startsWith("move y "))
         {
@@ -44,42 +48,57 @@ void ComandHandler::run()
             bool ok;
             qint64 y = trunc(comand.toDouble(&ok));     
             if (!ok) {                                  
-                printWrongCommand();                    
+                printWrongComand();                    
                 continue;                               
             }
-            *qout << "Положение до перемещения(X, Y): " << Qt::flush;
-            printPosition();
-            *qout << "Перемещено на 0 шагов по X и " 
-                  << cs.moveY(y)                        // Перемещение по Y
-                  << " шагов по Y" << Qt::endl;
-            *qout << "Положение после перемещения(X, Y): " << Qt::flush;
-            emit logTracking(cs.getPosition());
-            printPosition();
+//            *qout << "Положение до перемещения(X, Y): " << Qt::flush;
+//            printPosition();
+//            *qout << "Перемещено на 0 шагов по X и " 
+//                  << cs.moveY(y)                        // Перемещение по Y
+//                  << " шагов по Y" << Qt::endl;
+//            *qout << "Положение после перемещения(X, Y): " << Qt::flush;
+//            emit logTracking(cs.getPosition());
+//            printPosition();
+
+            emit moveY(y);
+
         }
         else if (!(comand.compare("get position")))
         {
-            printPosition();
+            emit getPosition();
+ //           printPosition();
         }
         else if (!(comand.compare("exit")))
         {
             break;
         }
         else {
-            printWrongCommand();
+            printWrongComand();
         }
-        *qout << ">: " << Qt::flush;
+        //*qout << ">: ";// << Qt::flush;
     }
 
     //this->quit();
     this->exit(0); 
 }
 
-void ComandHandler::printPosition()
+void ComandHandler::printPosition(QString s)
 {
-    *qout << cs.getPosition() << Qt::endl;
+    //*qout << cs.getPosition() << Qt::endl;
+    *qout << "Текущее положение: " << s << Qt::endl;
 }
 
-void ComandHandler::printWrongCommand()
+void ComandHandler::printLastMoveX(quint64 x)
+{
+    *qout << "Перемещено на " << QString::number(x) << " шагов по X и 0 шагов по Y" << Qt::endl;
+}
+
+void ComandHandler::printLastMoveY(quint64 y)
+{
+    *qout << "Перемещено на 0 шагов по X и " << QString::number(y) << " шагов по Y" << Qt::endl;
+}
+
+void ComandHandler::printWrongComand()
 {
     *qout << "Команда некорректна - попробуйте ещё раз" << Qt::endl;
 }

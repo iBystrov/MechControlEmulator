@@ -6,7 +6,7 @@ ControlSystem::ControlSystem()
 	mech.y = 0;
 }
 
-quint64 ControlSystem::moveX(const qint64& x)
+void ControlSystem::moveX(qint64 x)
 {
 	quint64 dist{0};	// перемещение по Х (число шагов)
 
@@ -37,10 +37,12 @@ quint64 ControlSystem::moveX(const qint64& x)
 	else					// иначе стоим на месте
 		dist = 0;
 
-	return dist;	
+	//return dist;	
+	emit printLastMoveX(dist);
+	getPosition();
 }
 
-quint64 ControlSystem::moveY(const qint64& y)
+void ControlSystem::moveY(qint64 y)
 {
 	quint64 dist{0};	
 
@@ -71,16 +73,19 @@ quint64 ControlSystem::moveY(const qint64& y)
 	else					
 		dist = 0;
 
-	return dist;
+	//return dist;
+	emit printLastMoveY(dist);
+	getPosition();
 }
 
-QString ControlSystem::getPosition() const
+void ControlSystem::getPosition() 
 {
 	QString str = QString::number(mech.x) + "," + QString::number(mech.y);
-	return str;
+	emit printPosition(str); 
 }
 
 ControlSystem::~ControlSystem()
 {
 
 }
+

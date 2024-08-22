@@ -2,22 +2,32 @@
 #include <QObject>
 #include "ComandHandler.h"
 #include "CsvWriter.h"
+#include "ControlSystem.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    ComandHandler ch; 
-    CsvWriter cw;
-                          // Поток обработки ввода пользователя 
+    ControlSystem cs;
+    ComandHandler ch; // Поток обработки ввода пользователя 
+//    CsvWriter cw;
+                          
+    // Сигнал завершения потока ввода команд завершит работу программы
+    QObject::connect(&ch, SIGNAL(finished()), &a, SLOT(quit()));
 
-    QObject::connect(&ch, SIGNAL(finished()),   // Сигнал завершения потока ввода команд 
-                      &a, SLOT(quit()));        // завершит работу программы
+    // Сигнал записи в CSV-файл текущей позиции механизма
+//    QObject::connect(&ch, SIGNAL(logTracking(QString)), &cw, SLOT(logTrackingSlot(QString)));             
 
-    QObject::connect(&ch, SIGNAL(logTracking(QString)),   // Сигнал записи в CSV-файл 
-        &cw, SLOT(logTrackingSlot(QString)));             // текущей позиции механизма
+    QObject::connect(&ch, SIGNAL(moveX(qint64)), &cs, SLOT(moveX(qint64)));
+    QObject::connect(&ch, SIGNAL(moveY(qint64)), &cs, SLOT(moveY(qint64)));
+    QObject::connect(&ch, SIGNAL(getPosition()), &cs, SLOT(getPosition()));
 
-    ch.start();                                 // Старт потока ввода команд (запускает ComandHandler::run())
+    QObject::connect(&cs, SIGNAL(printLastMoveX(quint64)), &ch, SLOT(printLastMoveX(quint64)));
+    QObject::connect(&cs, SIGNAL(printLastMoveY(quint64)), &ch, SLOT(printLastMoveY(quint64)));
+    QObject::connect(&cs, SIGNAL(printPosition(QString)), &ch, SLOT(printPosition(QString)));
+
+
+    ch.start();      // Старт потока ввода команд (запускает ComandHandler::run())
 
     return a.exec();
 }
