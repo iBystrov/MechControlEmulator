@@ -38,10 +38,10 @@ void ControlSystem::moveX(qint64 x)
 	else					// иначе стоим на месте
 		dist = 0;
 
-	emit printLastMoveX(dist);
-	updatePos();
-	emit logTracking(pos);
-	emit printPosition(pos);
+	emit printLastMoveX(dist);		// Отправляем последнее перемещение в консоль
+	updatePos();					// Обновляем текущую позицию
+	emit logTracking(pos);			// Отправляем текущую позицию на запись в CSV-файл
+	emit printPosition(pos);		// Отправляем текущую позицию на печать в консоль
 }
 
 void ControlSystem::moveY(qint64 y)
@@ -88,7 +88,7 @@ void ControlSystem::updatePos()
 
 void ControlSystem::getPosition()
 {	
-	emit printPosition(pos); 
+	emit printPosition(pos);		// Отправка текущей позиции в консоль
 }
 
 ControlSystem::~ControlSystem()

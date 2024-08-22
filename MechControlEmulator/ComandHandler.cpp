@@ -2,11 +2,12 @@
 
 ComandHandler::ComandHandler()
 {    
-    setlocale(LC_ALL, "Russian");
-
+    // Привязка текстовых потоков Qt к стандартным потокам ввода и вывода
     qout = new QTextStream(stdout, QIODevice::WriteOnly);   
     qin = new QTextStream(stdin, QIODevice::ReadOnly);        
 
+    // Настройка консоли и потока вывода Qt для работы с кириллицей
+    setlocale(LC_ALL, "Russian");
     (*qout).setEncoding(QStringConverter::System);
 
     *qout << "Cистема управления механизмом приветствует вас! " << Qt::endl;
@@ -19,7 +20,6 @@ void ComandHandler::run()
     *qout << "Введите команду>: " << Qt::flush;
 
     while ((*qin).readLineInto(&comand)) {              // Чтение строки из консоли
-
         if (comand.startsWith("move x "))               // Если начинается с "move x "
         {
             comand = comand.sliced(7);                  // отбрасываем "move x "
@@ -29,7 +29,7 @@ void ComandHandler::run()
                 printWrongComand();                     // то ввод был некорректен   
                 continue;                               // дальше не идём, продолжаем со следующей итерации
             }
-            emit moveX(x);
+            emit moveX(x);                              // Отправка сигнала перемещения по Х 
         }
         else if (comand.startsWith("move y "))
         {
@@ -40,22 +40,21 @@ void ComandHandler::run()
                 printWrongComand();                    
                 continue;                               
             }
-            emit moveY(y);
+            emit moveY(y);                              // Отправка сигнала перемещения по Y
         }
         else if (!(comand.compare("get position")))
         {
-            emit getPosition();
+            emit getPosition();                         // Отправка сигнала запроса текущей позиции 
         }
         else if (!(comand.compare("exit")))
         {
-            break;
+            break;                                      // Выход из цикла ввода команд
         }
         else {
             printWrongComand();
         }
-        //*qout << ">: ";// << Qt::flush;
     }
-    this->exit(0); 
+    this->exit(0);                                      // Завершение потока
 }
 
 void ComandHandler::printPosition(QString s)

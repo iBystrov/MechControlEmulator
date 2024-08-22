@@ -7,7 +7,7 @@
 class ControlSystem : public QObject
 {
 	Q_OBJECT
-	Mechanism mech;
+	Mechanism mech;						// Состояние механизма
 
 	// Пределы перемещения по осям 
 	static const qint64 maxX = 20000;
@@ -15,20 +15,20 @@ class ControlSystem : public QObject
 	static const qint64 minX = -20000;
 	static const qint64 minY = -20000;
 
-	QString pos;
-	void updatePos();
+	QString pos;					   // Строковое представление позиции
+	void updatePos();				   // Обновляет pos после перемещения
 public:
 	ControlSystem();
 	~ControlSystem();
 signals:
-	void printPosition(QString);       // Вывод текущей позиции
-	void printLastMoveX(quint64);
-	void printLastMoveY(quint64);
+	void printPosition(QString);       // Для передачи позиции в консоль
+	void printLastMoveX(quint64);	   // Для передачи перемещения по X в консоль
+	void printLastMoveY(quint64);	   // Для передачи перемещения по Y в консоль
 
-	void logTracking(QString);         // Запись в CSV-файл
+	void logTracking(QString);         // Запись позиции в CSV-файл
 public slots:
-	void moveX(qint64 x);
-	void moveY(qint64 y);
-	void getPosition();
+	void moveX(qint64 x);			   // Обработка команды перемещения по X
+	void moveY(qint64 y);			   // Обработка команды перемещения по Y
+	void getPosition();                // Обработка запроса текущей позиции
 };
 

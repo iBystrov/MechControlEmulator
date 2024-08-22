@@ -22,5 +22,4 @@ void CsvWriter::logTrackingSlot(QString s)
         out.flush();                // Сброс на устройство (в файл)
         file->close();              // Закрытие файла
     }
-
 }
