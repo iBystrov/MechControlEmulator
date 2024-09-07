@@ -58,4 +58,7 @@
   <ItemGroup>
     <None Include="README.md" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Тестовое задание.txt" />
+  </ItemGroup>
 </Project>
